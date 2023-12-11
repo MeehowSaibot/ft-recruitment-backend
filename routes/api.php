@@ -3,9 +3,14 @@
 use App\Http\Controllers\DuelController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Authorization\LoginController;
+use Symfony\Component\HttpFoundation\Response;
 
-Route::post('login', [LoginController::class, 'login']);
-Route::post('logout', [LoginController::class, 'logout']);
+Route::get('/', function() {
+   return response()->json('Welcome.', Response::HTTP_OK);
+});
+
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
